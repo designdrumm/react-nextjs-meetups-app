@@ -12,7 +12,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "next/core-web-vitals"
+    "plugin:next/recommended"
   ],
   "overrides": [],
   "parserOptions": {
@@ -22,7 +22,7 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "next"],
   "rules": {
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error"
