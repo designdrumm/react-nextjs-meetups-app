@@ -1,3 +1,6 @@
+import React from "react";
+import PropTypes from "prop-types";
+
 import MeetupItem from './MeetupItem';
 import classes from './MeetupList.module.css';
 
@@ -16,5 +19,9 @@ function MeetupList(props) {
     </ul>
   );
 }
+
+MeetupList.propTypes = {
+  meetups: PropTypes.array.isRequired,
+};
 
 export default MeetupList;

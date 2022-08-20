@@ -1,5 +1,8 @@
-import MainNavigation from './MainNavigation';
-import classes from './Layout.module.css';
+import React from "react";
+import PropTypes from "prop-types";
+
+import MainNavigation from "./MainNavigation";
+import classes from "./Layout.module.css";
 
 function Layout(props) {
   return (
@@ -9,5 +12,9 @@ function Layout(props) {
     </div>
   );
 }
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default Layout;

@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
+import PropTypes from "prop-types";
 
 import Card from '../ui/Card';
 import classes from './NewMeetupForm.module.css';
@@ -58,5 +59,9 @@ function NewMeetupForm(props) {
     </Card>
   );
 }
+
+NewMeetupForm.propTypes = {
+  onAddMeetup: PropTypes.func.isRequired,
+};
 
 export default NewMeetupForm;

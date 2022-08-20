@@ -1,10 +1,20 @@
 import React from "react";
-import Layout from '../components/layout/Layout';
+import PropTypes from "prop-types";
+import Layout from "../components/layout/Layout";
 
-import '../styles/globals.css';
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
-  return <Layout><Component {...pageProps} /></Layout>
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
 
-export default MyApp
+MyApp.propTypes = {
+  Component: PropTypes.func.isRequired,
+  pageProps: PropTypes.object.isRequired,
+};
+
+export default MyApp;

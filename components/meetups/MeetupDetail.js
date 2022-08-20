@@ -1,3 +1,6 @@
+import React from "react";
+import PropTypes from "prop-types";
+
 import classes from './MeetupDetail.module.css';
 
 const MeetupDetail = (props) => {
@@ -12,6 +15,13 @@ const MeetupDetail = (props) => {
       <p>{props.description}</p>
     </section>
   );
+};
+
+MeetupDetail.propTypes = {
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };
 
 export default MeetupDetail;

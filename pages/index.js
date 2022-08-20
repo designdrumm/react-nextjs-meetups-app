@@ -1,3 +1,5 @@
+import React from "react";
+import PropTypes from "prop-types";
 import Head from "next/head";
 import { MongoClient } from "mongodb";
 
@@ -36,6 +38,10 @@ const HomePage = (props) => {
       <MeetupList meetups={props.meetups} />
     </Fragment>
   );
+};
+
+HomePage.propTypes = {
+  meetups: PropTypes.array.isRequired,
 };
 
 //Next.js functions

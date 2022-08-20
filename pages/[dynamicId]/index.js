@@ -1,6 +1,7 @@
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 import { MongoClient, ObjectId } from "mongodb";
 import Head from "next/head";
-import { Fragment } from "react";
 
 import MeetupDetail from "../../components/meetups/MeetupDetail";
 
@@ -19,6 +20,15 @@ const MeetupDetails = (props) => {
       />
     </Fragment>
   );
+};
+
+MeetupDetails.propTypes = {
+  meetupData: {
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }
 };
 
 // Required function if page is dynamic and using getStaticProps
