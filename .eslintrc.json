@@ -2,6 +2,9 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "next": {
+      "rootDir": "/"
     }
   },
   "env": {
@@ -12,7 +15,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "next/recommended"
+    "next"
   ],
   "overrides": [],
   "parserOptions": {
@@ -22,7 +25,7 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["react", "next"],
+  "plugins": ["react"],
   "rules": {
     "react/jsx-uses-react": "error"
   }
