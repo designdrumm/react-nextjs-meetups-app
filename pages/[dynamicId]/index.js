@@ -9,21 +9,20 @@ const MeetupDetails = (props) => {
   return (
     <Fragment>
       <Head>
-        <title>{props.meetupData.title}</title>
-        <meta name="description" content={props.meetupData.description} />
+        <title>{props.title}</title>
+        <meta name="description" content={props.description} />
       </Head>
       <MeetupDetail
-        title={props.meetupData.title}
-        image={props.meetupData.image}
-        address={props.meetupData.address}
-        description={props.meetupData.description}
+        title={props.title}
+        image={props.image}
+        address={props.address}
+        description={props.description}
       />
     </Fragment>
   );
 };
 
 MeetupDetails.propTypes = {
-  meetupData: PropTypes.object.isRequired,
   id: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -53,13 +52,11 @@ export const getStaticProps = async (context) => {
 
   return {
     props: {
-      meetupData: {
-        id: selectedMeetup._id.toString(),
-        title: selectedMeetup.title,
-        address: selectedMeetup.address,
-        image: selectedMeetup.image,
-        description: selectedMeetup.description,
-      },
+      id: selectedMeetup._id.toString(),
+      title: selectedMeetup.title,
+      address: selectedMeetup.address,
+      image: selectedMeetup.image,
+      description: selectedMeetup.description,
     },
     revalidate: 10,
   };
