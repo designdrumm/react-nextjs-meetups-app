@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import { MongoClient, ObjectId } from "mongodb";
+import MeetupConnect from "../api/MeetupConnect";
 import Head from "next/head";
 
 import MeetupDetail from "../../components/meetups/MeetupDetail";
@@ -23,33 +23,22 @@ const MeetupDetails = (props) => {
 };
 
 MeetupDetails.propTypes = {
-  meetupData: {
-    image: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-  }
+  meetupData: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  description: PropTypes.string,
 };
 
 // Required function if page is dynamic and using getStaticProps
 export const getStaticPaths = async () => {
   //fetch api data, read file, etc
-  const client = await MongoClient.connect(
-    "mongodb+srv://reactapp:i3A0CTd0sOkUCiOd@cluster0.xzbywfk.mongodb.net/?retryWrites=true&w=majority"
-  );
-  //TODO: connetion error checking
-
-  const db = client.db("meetup-app");
-
-  const meetupsCollections = db.collection("meetups");
-
-  const meetupsData = await meetupsCollections.find({}, { _id: 1 }).toArray();
-
-  client.close();
+  const MeetupConnectData = await MeetupConnect("find", "id");
 
   return {
     fallback: false,
-    paths: meetupsData.map((meetup) => ({
+    paths: MeetupConnectData.map((meetup) => ({
       params: {
         dynamicId: meetup._id.toString(),
       },
@@ -59,23 +48,8 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   // fetch data for a single meetup
-
   const meetupId = context.params.dynamicId;
-
-  const client = await MongoClient.connect(
-    "mongodb+srv://reactapp:i3A0CTd0sOkUCiOd@cluster0.xzbywfk.mongodb.net/?retryWrites=true&w=majority"
-  );
-  //TODO: connetion error checking
-
-  const db = client.db("meetup-app");
-
-  const meetupsCollections = db.collection("meetups");
-
-  const selectedMeetup = await meetupsCollections.findOne({
-    _id: ObjectId(meetupId),
-  });
-
-  client.close();
+  const selectedMeetup = await MeetupConnect("find", meetupId);
 
   return {
     props: {
@@ -87,7 +61,7 @@ export const getStaticProps = async (context) => {
         description: selectedMeetup.description,
       },
     },
-    revalidate: 1,
+    revalidate: 10,
   };
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import PropTypes from "prop-types";
 
 import Card from "../ui/Card";
@@ -16,7 +17,7 @@ function MeetupItem(props) {
     <li className={classes.item}>
       <Card>
         <div className={classes.image}>
-          <img src={props.image} alt={props.title} />
+          <Image src={props.image} alt={props.title} layout={"fill"} />
         </div>
         <div className={classes.content}>
           <h3>{props.title}</h3>
@@ -31,11 +32,11 @@ function MeetupItem(props) {
 }
 
 MeetupItem.propTypes = {
-    id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
-    description: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  description: PropTypes.string,
 };
 
 export default MeetupItem;

@@ -15,7 +15,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "next"
+    "next",
+    "next/core-web-vitals"
   ],
   "overrides": [],
   "parserOptions": {

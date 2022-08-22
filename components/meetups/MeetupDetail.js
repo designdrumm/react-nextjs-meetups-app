@@ -1,14 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Image from 'next/image';
 
 import classes from './MeetupDetail.module.css';
 
 const MeetupDetail = (props) => {
   return (
     <section className={classes.detail}>
-      <img
+      <Image 
         src={props.image}
         alt={props.title}
+        layout={"fill"}
       />
       <h1>{props.title}</h1>
       <address>{props.address}</address>
