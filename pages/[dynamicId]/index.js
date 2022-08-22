@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import MeetupConnect from "../api/MeetupConnect";
 import Head from "next/head";
+
+import MeetupConnect from "../api/MeetupConnect";
 
 import MeetupDetail from "../../components/meetups/MeetupDetail";
 
