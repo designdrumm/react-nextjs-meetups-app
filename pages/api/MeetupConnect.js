@@ -2,20 +2,27 @@ import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 
 const MeetupConnect = async (process, insertData) => {
   const client = await MongoClient.connect(
-    "mongodb+srv://reactapp:i3A0CTd0sOkUCiOd@cluster0.xzbywfk.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 }
+    "mongodb+srv://reactapp:i3A0CTd0sOkUCiOd@cluster0.xzbywfk.mongodb.net/?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverApi: ServerApiVersion.v1,
+    }
   );
   //TODO: connetion error checking
 
-  const meetupsCollections = await client.db("meetup-app").collection("meetups");
+  const meetupsCollections = await client
+    .db("meetup-app")
+    .collection("meetups");
 
   let meetupsData;
 
-  switch(process) {
+  switch (process) {
     case "find":
       if (insertData.length > 0) {
-        if(insertData === "id") {
+        if (insertData === "id") {
           meetupsData = await meetupsCollections.find({}, { _id: 1 }).toArray();
-        } else if(insertData === "all") {
+        } else if (insertData === "all") {
           meetupsData = await meetupsCollections.find().toArray();
         } else {
           meetupsData = await meetupsCollections.findOne({
@@ -23,10 +30,10 @@ const MeetupConnect = async (process, insertData) => {
           });
         }
       }
-        break;
+      break;
     case "insert":
       meetupsData = await meetupsCollections.insertOne(insertData);
-        break;
+      break;
   }
 
   client.close();
