@@ -6,9 +6,7 @@ const MeetupConnect = async (process, insertData) => {
   );
   //TODO: connetion error checking
 
-  const db = client.db("meetup-app");
-
-  const meetupsCollections = db.collection("meetups");
+  const meetupsCollections = await client.db("meetup-app").collection("meetups");
 
   let meetupsData;
 
