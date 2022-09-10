@@ -16,6 +16,7 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "next",
+    "next/babel",
     "next/core-web-vitals"
   ],
   "overrides": [],
